@@ -1,5 +1,7 @@
 package com.abc;
 
+import java.util.ArrayList;
+
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -18,17 +20,33 @@ public class App
         System.out.println( "Hello World!" );
     
         ApplicationContext context = new ClassPathXmlApplicationContext("bean.xml");
-     
-          EmployeeService emp1 = context.getBean(EmployeeService.class);
-          emp1.doWork();
-          emp1.doPunchAtEntry();
           
-          
+
           ManagerService m1 = context.getBean(ManagerService.class);
+          
+
+          
           m1.assignTask();
           
-          HRService h1 = context.getBean(HRService.class);
-          h1.hrRecruitment();
+          
+          
+
+//        String[] beanNames = context.getBeanDefinitionNames();
+//        
+//        for(String name:beanNames)
+//        {
+//     	   System.out.println(name);
+//        }
+//        
+     
+          
+//          EmployeeService emp1 = context.getBean(EmployeeService.class);
+//          emp1.doWork();
+//          emp1.doPunchAtEntry();
+//          
+//          
+//          HRService h1 = context.getBean(HRService.class);
+//          h1.hrRecruitment();
           
     }
 }

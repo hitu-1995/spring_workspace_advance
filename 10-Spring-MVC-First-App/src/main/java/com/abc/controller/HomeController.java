@@ -1,8 +1,11 @@
 package com.abc.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import com.abc.model.Student;
 
 @Controller
 public class HomeController {
@@ -35,5 +38,12 @@ public class HomeController {
 	    return "login"; 	
 	    
 	}
+	@RequestMapping("/reg")
+    public String saveStudent(@ModelAttribute Student student) {
+		// session object 
+		// session.save(student);
+		System.out.println(student);
+			  return "login";
+			}
 	
 }

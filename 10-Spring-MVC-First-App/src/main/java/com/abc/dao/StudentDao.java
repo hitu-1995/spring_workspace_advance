@@ -9,4 +9,8 @@ public interface StudentDao {
 	void saveStudent(Student student);
 
 	List<Student> getAllStudents();
+
+	List<Student> deleteStudent(int rollno);
+
+	Student editStudent(int rollno);
 }

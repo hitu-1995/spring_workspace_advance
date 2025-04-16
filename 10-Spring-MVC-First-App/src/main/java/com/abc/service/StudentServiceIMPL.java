@@ -28,4 +28,19 @@ public class StudentServiceIMPL implements StudentService{
 	    return new ArrayList<Student>();
 	}
 
+	public List<Student> deleteStudent(int rollno) {
+	
+		return dao.deleteStudent(rollno);
+	}
+
+	public Student editStudent(int rollno) {
+		
+		return dao.editStudent(rollno);
+	}
+
+	public List<Student> updateStudent(Student student) {
+            dao.saveStudent(student);
+		return dao.getAllStudents();
+	}
+
 }

@@ -63,4 +63,29 @@ public class HomeController {
 
 		return "login";
 	}
+
+
+	@RequestMapping("/delete")
+	public String deleteStudent(@RequestParam int rollno, Model model) {
+	    // delete Student of this rollno and return updated list to success page
+		List<Student> list = service.deleteStudent(rollno);
+		model.addAttribute("data",list);
+		return "success";
+	}
+	@RequestMapping("/edit")
+	public String editStudent(@RequestParam int rollno, Model model) {
+		System.out.println("Rollno "+rollno);
+		Student stu =  service.editStudent(rollno);
+		model.addAttribute("stu", stu);
+		return "update";
+	}
+
+	@RequestMapping("/update")
+	public String updateStudent(@ModelAttribute Student student , Model model) {
+		
+	 List<Student> list = 	service.updateStudent(student);
+	    model.addAttribute("data", list);
+		return "success";
+	}
+	
 }

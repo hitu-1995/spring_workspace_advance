@@ -3,7 +3,9 @@ package com.abc;
 
 
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.abc.config.BeanConfig;
 import com.abc.util.JDBCUtils;
@@ -11,7 +13,9 @@ import com.abc.util.JDBCUtils;
 public class App {
 	public static void main(String[] args) {
 
-		ApplicationContext context = new AnnotationConfigApplicationContext(BeanConfig.class);
+		//ApplicationContext context = new AnnotationConfigApplicationContext(BeanConfig.class);
+		ConfigurableApplicationContext context = new ClassPathXmlApplicationContext("bean.xml");
+		
 
 		/*
 		 * EmployeeService service1 = context.getBean(EmployeeService.class);

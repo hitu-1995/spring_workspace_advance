@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.abc.model.Student;
 import com.abc.service.StudentService;
@@ -86,6 +87,13 @@ public class HomeController {
 	 List<Student> list = 	service.updateStudent(student);
 	    model.addAttribute("data", list);
 		return "success";
+	}
+	
+	@RequestMapping("/greet")
+	@ResponseBody
+	public String greet() {
+		
+		return "Welcome to Spring MVC app";
 	}
 	
 }

@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 
+import com.abc.exception.EmployeeServiceException;
 import com.abc.model.Employee;
 import com.abc.repository.EmployeeRepository;
 
@@ -19,9 +21,8 @@ public class EmployeeServiceIMPL implements EmployeeService {
 
 	@Override
 	public ResponseEntity<Employee> saveEmployee(Employee employee) {
-		if (empRepository.existsById(employee.getEid())) {
-			// Employee emp = empRepository.save(employee);
-			return new ResponseEntity<Employee>(employee, HttpStatus.ALREADY_REPORTED);
+		if (empRepository.existsById(employee.getEid())) { 
+			throw new EmployeeServiceException("EmployeeServiceException :: EmployeeAlreadyRegistered");
 		} else {
 			Employee emp2 = empRepository.save(employee);
 			return new ResponseEntity<Employee>(emp2, HttpStatus.CREATED);
@@ -35,7 +36,7 @@ public class EmployeeServiceIMPL implements EmployeeService {
 			Employee emp = empRepository.findById(eid).get();
 			return new ResponseEntity<Employee>(emp, HttpStatus.OK);
 		} else
-			return new ResponseEntity<Employee>(new Employee(), HttpStatus.NOT_ACCEPTABLE);
+			throw new EmployeeServiceException("EmployeeServiceException :: Employee Not Found");
 	}
 
 	@Override
@@ -75,5 +76,6 @@ public class EmployeeServiceIMPL implements EmployeeService {
 		else
 			return new ResponseEntity<String>("Employee Not Found",HttpStatus.CONFLICT);
 	}
+
 
 }

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.abc.exception.EmployeeServiceException;
 import com.abc.model.Employee;
 import com.abc.service.EmployeeService;
 
@@ -24,6 +25,7 @@ public class EmployeeController {
 
 	@Autowired
 	private EmployeeService service;
+	
 
 	@PostMapping("/") // http://localhost:9090/api/employee/
 	public ResponseEntity<Employee> saveEmployee(@RequestBody Employee employee) {
@@ -81,10 +83,10 @@ public class EmployeeController {
 
 	// This method will responsible to handle only EmployeeController ArithmeticException
 	// Local exception handling
-	@ExceptionHandler(value = ArithmeticException.class)
-	public ResponseEntity<String> arithmeticException() {
-		System.out.println("--------------ArithmeticException--------------");
-		return new ResponseEntity<String>("ArithmeticException in EmployeeContoller method", HttpStatus.INTERNAL_SERVER_ERROR);
-	}
+	
 
+//	@ExceptionHandler(value = EmployeeServiceException.class)
+//	public ResponseEntity<?> employeeServiceException() {
+//		return new ResponseEntity<String>("Exception Handled in Local Level ",HttpStatus.INTERNAL_SERVER_ERROR);
+//	}
 }
